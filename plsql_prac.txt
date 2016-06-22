@@ -1,0 +1,14 @@
+CREATE OR REPLACE PROCEDURE add_customer(cust_no customer.customer_no%TYPE, cust_name customer.name%TYPE,cust_email customer.email%TYPE,cust_phone customer.phone%TYPE)
+IS
+BEGIN
+INSERT INTO customer VALUES(cust_no,cust_name,cust_email,cust_phone);
+ 
+END;
+/
+
+select * from customer
+
+BEGIN
+   add_customer(105,'gaga','gaga@gmail.com',5879);
+END;
+
