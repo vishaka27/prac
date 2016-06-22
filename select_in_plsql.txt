@@ -1,0 +1,20 @@
+CREATE OR REPLACE PROCEDURE query_customer(cust_no IN customer.customer_no%TYPE, cust_name OUT customer.name%TYPE, cust_email OUT customer.email%TYPE) 
+IS
+BEGIN
+SELECT name, email INTO cust_name, cust_email FROM customer WHERE customer_no=cust_no;
+EXCEPTION
+WHEN NO_DATA_FOUND THEN
+RAISE_APPLICATION_ERROR(-20001,'customer does not exist');
+END;
+/
+
+DECLARE
+cust_name customer.name%TYPE;
+cust_email customer.email%TYPE;
+BEGIN
+query_customer(102,cust_name,cust_email);
+
+dbms_output.put_line(cust_name);
+dbms_output.put_line(cust_email);
+
+END;
