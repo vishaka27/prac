@@ -1,0 +1,157 @@
+METER READING
+
+package com.training;
+
+import java.util.Scanner;
+
+public class Application {
+
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Consumer Number");
+		 long consumerNumber = sc.nextLong();
+		 
+		 System.out.println("Consumer Name");
+		 String consumerName = sc.next();
+		 
+		 System.out.println("Last Reading");
+		 double lastReading = sc.nextDouble();
+		 
+		 System.out.println("current reading");
+		 double currentReading = sc.nextDouble();
+		 
+		 System.out.println("consumer type [DOM - COM]");
+		 String consumerType = sc.next();
+		 
+		 MeterReading reading = new MeterReading(consumerNumber, consumerName, lastReading, currentReading, consumerType);
+		 
+		
+		BillManagar mgr1 = new BillManagar();
+		double amount =mgr1.calculateBillAmount(reading);
+		System.out.println(amount);
+		BillManagar mgr2 = new BillManagar(new MeterReading(12,"vish",200,300,"DOM"));
+		double amount2 = mgr2.calculateBillAmount();
+		
+		System.out.println(amount2);
+		sc.close();
+	}
+}
+
+
+
+BILL MANAGER
+
+package com.training;
+
+public class BillManagar {
+
+	private MeterReading reading;
+	
+	
+	  public BillManagar(MeterReading reading) {
+		super();
+		this.reading = reading;
+	}
+
+	  
+	public MeterReading getReading() {
+		return reading;
+	}
+
+
+	public void setReading(MeterReading reading) {
+		this.reading = reading;
+	}
+
+
+	public BillManagar() {
+		super();
+	}
+
+	public double calculateBillAmount(MeterReading reading)
+	  {
+		  double amount=0;
+		  double unitConsumed = reading.getCurrentReading()-reading.getLastReading();
+		  
+		  if(reading.getConsumerType().equals("DOM"))
+		  {
+			  
+			  if(unitConsumed>200)
+			  {
+				  amount = unitConsumed*2.0;
+			  }
+			  else
+			  {
+				  amount = unitConsumed*1.20;
+			  }
+		  }
+		  
+		  if(reading.getConsumerType().equals("COM"))
+		  {
+			  if(unitConsumed>400)
+			  {
+				  amount = unitConsumed*4.0;
+			  }
+			  else
+			  {
+				  amount = unitConsumed*2.5;
+			  }
+		  }
+		
+		  return amount;
+	  }
+	  
+	  public double calculateBillAmount()
+	  {
+		  double amount=0;
+		  amount = calculateBillAmount(reading);
+		  
+		  return amount;
+	  }
+}
+
+
+APPLICATION JAVA
+
+package com.training;
+
+import java.util.Scanner;
+
+public class Application {
+
+	
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Consumer Number");
+		 long consumerNumber = sc.nextLong();
+		 
+		 System.out.println("Consumer Name");
+		 String consumerName = sc.next();
+		 
+		 System.out.println("Last Reading");
+		 double lastReading = sc.nextDouble();
+		 
+		 System.out.println("current reading");
+		 double currentReading = sc.nextDouble();
+		 
+		 System.out.println("consumer type [DOM - COM]");
+		 String consumerType = sc.next();
+		 
+		 MeterReading reading = new MeterReading(consumerNumber, consumerName, lastReading, currentReading, consumerType);
+		 
+		
+		BillManagar mgr1 = new BillManagar();
+		double amount =mgr1.calculateBillAmount(reading);
+		System.out.println(amount);
+		BillManagar mgr2 = new BillManagar(new MeterReading(12,"vish",200,300,"DOM"));
+		double amount2 = mgr2.calculateBillAmount();
+		
+		System.out.println(amount2);
+		sc.close();
+	}
+}
