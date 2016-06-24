@@ -1,0 +1,88 @@
+
+
+MainFunc.java
+
+
+public class Mainfunc {
+	
+	public static void main(String[] args) {
+		
+		Converter c= new Converter(42);
+		Temperature t = new Temperature(87);
+		int money= c.convert(42);
+		double temp_c = t.temp_convert(87);
+		System.out.println(temp_c);
+		System.out.println(money);
+		
+	}
+
+}
+
+
+Converter.java
+
+public class Converter {
+	
+	int amount;
+	int converted;
+	
+	
+	
+	public Converter(int amount) {
+		super();
+		this.amount = amount;
+	}
+	public int getAmount() {
+		return amount;
+	}
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+	public int getConverted() {
+		return converted;
+	}
+	public void setConverted(int converted) {
+		this.converted = converted;
+	}
+	
+public int convert(int amount)
+{
+return converted = amount + 60;
+}
+}
+
+
+Temperature.java
+
+public class Temperature {
+	
+	double temp;
+	double converted_temp;
+	
+	
+		
+	public Temperature(double temp) {
+		super();
+		this.temp = temp;
+	}
+	
+	
+	public double getTemp() {
+		return temp;
+	}
+	public void setTemp(double temp) {
+		this.temp = temp;
+	}
+	public double getConverted_temp() {
+		return converted_temp;
+	}
+	public void setConverted_temp(double converted_temp) {
+		this.converted_temp = converted_temp;
+	}
+	
+	public double temp_convert(double temp)
+	{
+		
+		converted_temp = (temp * 9)/5;
+		return converted_temp;
+	}
